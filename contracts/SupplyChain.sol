@@ -34,17 +34,18 @@ contract SupplyChain {
    * Modifiers
    */
 
-  // Create a modifer, `isOwner` that checks if the msg.sender is the owner of the contract
-
-  // <modifier: isOwner
+  modifier isOwner() {
+    require (msg.sender == owner);
+    _;
+  }
 
   modifier verifyCaller (address _address) { 
-    // require (msg.sender == _address); 
+    require (msg.sender == _address); 
     _;
   }
 
   modifier paidEnough(uint _price) { 
-    // require(msg.value >= _price); 
+    require(msg.value >= _price); 
     _;
   }
 
@@ -99,7 +100,16 @@ contract SupplyChain {
   //    - check the value after the function is called to make 
   //      sure the buyer is refunded any excess ether sent. 
   // 6. call the event associated with this function!
-  function buyItem(uint sku) public {}
+  function buyItem(uint sku) payable public 
+    paidEnough(msg.value) {
+      Item storage item = items[sku];
+      require(item.state == State.ForSale);
+      item.seller.transfer(item.price);
+      item.buyer = msg.sender;
+      item.state = State.Sold;
+
+      emit LogSold(sku);
+  }
 
   // 1. Add modifiers to check:
   //    - the item is sold already 
