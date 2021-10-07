@@ -248,18 +248,25 @@ contract("SupplyChain", function (accounts) {
         await catchRevert(instance.buyItem(0, { from: bob, value: 1 }));
       });
 
-      //   it("should emit LogSold event when and item is purchased", async () => {
-      //     var eventEmitted = false;
+      it("should emit LogSold event when and item is purchased", async () => {
+        var eventEmitted = false;
 
-      //     await instance.addItem(name, price, { from: alice });
-      //     const tx = await instance.buyItem(0, { from: bob, value: excessAmount });
+        await instance.addItem(name, price, { from: alice });
+        const tx = await instance.buyItem(0, {
+          from: bob,
+          value: excessAmount,
+        });
 
-      //     if (tx.logs[0].event == "LogSold") {
-      //       eventEmitted = true;
-      //     }
+        if (tx.logs[0].event == "LogSold") {
+          eventEmitted = true;
+        }
 
-      //     assert.equal(eventEmitted, true, "adding an item should emit a Sold event");
-      //   });
+        assert.equal(
+          eventEmitted,
+          true,
+          "adding an item should emit a Sold event"
+        );
+      });
 
       //   it("should revert when someone that is not the seller tries to call shipItem()", async () => {
       //     await instance.addItem(name, price, { from: alice });
