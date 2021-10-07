@@ -243,10 +243,10 @@ contract("SupplyChain", function (accounts) {
         );
       });
 
-      //   it("should error when not enough value is sent when purchasing an item", async () => {
-      //     await instance.addItem(name, price, { from: alice });
-      //     await catchRevert(instance.buyItem(0, { from: bob, value: 1 }));
-      //   });
+      it("should error when not enough value is sent when purchasing an item", async () => {
+        await instance.addItem(name, price, { from: alice });
+        await catchRevert(instance.buyItem(0, { from: bob, value: 1 }));
+      });
 
       //   it("should emit LogSold event when and item is purchased", async () => {
       //     var eventEmitted = false;
