@@ -39,44 +39,41 @@ contract("SupplyChain", function (accounts) {
       );
     });
 
-    //   describe("enum State", () => {
-    //     let enumState;
-    //     before(() => {
-    //       enumState = SupplyChain.enums.State;
-    //       assert(
-    //         enumState,
-    //         "The contract should define an Enum called State"
-    //       );
-    //     });
+    describe("enum State", () => {
+      let enumState;
+      before(() => {
+        enumState = SupplyChain.enums.State;
+        assert(enumState, "The contract should define an Enum called State");
+      });
 
-    //     it("should define `ForSale`", () => {
-    //       assert(
-    //         enumState.hasOwnProperty('ForSale'),
-    //         "The enum does not have a `ForSale` value"
-    //       );
-    //     });
+      it("should define `ForSale`", () => {
+        assert(
+          enumState.hasOwnProperty("ForSale"),
+          "The enum does not have a `ForSale` value"
+        );
+      });
 
-    //     it("should define `Sold`", () => {
-    //       assert(
-    //         enumState.hasOwnProperty('Sold'),
-    //         "The enum does not have a `Sold` value"
-    //       );
-    //     });
+      it("should define `Sold`", () => {
+        assert(
+          enumState.hasOwnProperty("Sold"),
+          "The enum does not have a `Sold` value"
+        );
+      });
 
-    //     it("should define `Shipped`", () => {
-    //       assert(
-    //         enumState.hasOwnProperty('Shipped'),
-    //         "The enum does not have a `Shipped` value"
-    //       );
-    //     });
+      it("should define `Shipped`", () => {
+        assert(
+          enumState.hasOwnProperty("Shipped"),
+          "The enum does not have a `Shipped` value"
+        );
+      });
 
-    //     it("should define `Received`", () => {
-    //       assert(
-    //         enumState.hasOwnProperty('Received'),
-    //         "The enum does not have a `Received` value"
-    //       );
-    //     });
-    //   })
+      it("should define `Received`", () => {
+        assert(
+          enumState.hasOwnProperty("Received"),
+          "The enum does not have a `Received` value"
+        );
+      });
+    });
 
     //   describe("Item struct", () => {
     //     let subjectStruct;
