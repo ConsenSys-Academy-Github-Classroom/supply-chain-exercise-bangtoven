@@ -31,9 +31,13 @@ contract("SupplyChain", function (accounts) {
       );
     });
 
-    //   it("should have an skuCount", async () => {
-    //     assert.equal(typeof instance.skuCount, 'function', "the contract has no skuCount");
-    //   });
+    it("should have an skuCount", async () => {
+      assert.equal(
+        typeof instance.skuCount,
+        "function",
+        "the contract has no skuCount"
+      );
+    });
 
     //   describe("enum State", () => {
     //     let enumState;
