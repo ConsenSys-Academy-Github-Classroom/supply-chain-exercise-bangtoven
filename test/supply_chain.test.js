@@ -321,13 +321,13 @@ contract("SupplyChain", function (accounts) {
         );
       });
 
-      //   it("should revert if an address other than the buyer calls receiveItem()", async () => {
-      //     await instance.addItem(name, price, { from: alice });
-      //     await instance.buyItem(0, { from: bob, value: excessAmount });
-      //     await instance.shipItem(0, { from: alice });
+      it("should revert if an address other than the buyer calls receiveItem()", async () => {
+        await instance.addItem(name, price, { from: alice });
+        await instance.buyItem(0, { from: bob, value: excessAmount });
+        await instance.shipItem(0, { from: alice });
 
-      //     await catchRevert(instance.receiveItem(0, { from: alice }));
-      //   });
+        await catchRevert(instance.receiveItem(0, { from: alice }));
+      });
 
       it("should emit a LogReceived event when an item is received", async () => {
         var eventEmitted = false;
