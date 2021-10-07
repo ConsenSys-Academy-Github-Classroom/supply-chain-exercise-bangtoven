@@ -306,20 +306,20 @@ contract("SupplyChain", function (accounts) {
         );
       });
 
-      //   it("should allow the buyer to mark the item as received", async () => {
-      //     await instance.addItem(name, price, { from: alice });
-      //     await instance.buyItem(0, { from: bob, value: excessAmount });
-      //     await instance.shipItem(0, { from: alice });
-      //     await instance.receiveItem(0, { from: bob });
+      it("should allow the buyer to mark the item as received", async () => {
+        await instance.addItem(name, price, { from: alice });
+        await instance.buyItem(0, { from: bob, value: excessAmount });
+        await instance.shipItem(0, { from: alice });
+        await instance.receiveItem(0, { from: bob });
 
-      //     const result = await instance.fetchItem.call(0);
+        const result = await instance.fetchItem.call(0);
 
-      //     assert.equal(
-      //       result[3].toString(10),
-      //       SupplyChain.State.Received,
-      //       'the state of the item should be "Received"',
-      //     );
-      //   });
+        assert.equal(
+          result[3].toString(10),
+          SupplyChain.State.Received,
+          'the state of the item should be "Received"'
+        );
+      });
 
       //   it("should revert if an address other than the buyer calls receiveItem()", async () => {
       //     await instance.addItem(name, price, { from: alice });
@@ -329,24 +329,24 @@ contract("SupplyChain", function (accounts) {
       //     await catchRevert(instance.receiveItem(0, { from: alice }));
       //   });
 
-      //   it("should emit a LogReceived event when an item is received", async () => {
-      //     var eventEmitted = false;
+      it("should emit a LogReceived event when an item is received", async () => {
+        var eventEmitted = false;
 
-      //     await instance.addItem(name, price, { from: alice });
-      //     await instance.buyItem(0, { from: bob, value: excessAmount });
-      //     await instance.shipItem(0, { from: alice });
-      //     const tx = await instance.receiveItem(0, { from: bob });
+        await instance.addItem(name, price, { from: alice });
+        await instance.buyItem(0, { from: bob, value: excessAmount });
+        await instance.shipItem(0, { from: alice });
+        const tx = await instance.receiveItem(0, { from: bob });
 
-      //     if (tx.logs[0].event == "LogReceived") {
-      //       eventEmitted = true;
-      //     }
+        if (tx.logs[0].event == "LogReceived") {
+          eventEmitted = true;
+        }
 
-      //     assert.equal(
-      //       eventEmitted,
-      //       true,
-      //       "adding an item should emit a Shipped event",
-      //     );
-      //   });
+        assert.equal(
+          eventEmitted,
+          true,
+          "adding an item should emit a Shipped event"
+        );
+      });
     });
   });
 });
