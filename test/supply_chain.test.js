@@ -191,20 +191,20 @@ contract("SupplyChain", function (accounts) {
         );
       });
 
-      //   it("should emit a LogForSale event when an item is added", async () => {
-      //     let eventEmitted = false;
-      //     const tx = await instance.addItem(name, price, { from: alice });
+      it("should emit a LogForSale event when an item is added", async () => {
+        let eventEmitted = false;
+        const tx = await instance.addItem(name, price, { from: alice });
 
-      //     if (tx.logs[0].event == "LogForSale") {
-      //       eventEmitted = true;
-      //     }
+        if (tx.logs[0].event == "LogForSale") {
+          eventEmitted = true;
+        }
 
-      //     assert.equal(
-      //       eventEmitted,
-      //       true,
-      //       "adding an item should emit a For Sale event",
-      //     );
-      //   });
+        assert.equal(
+          eventEmitted,
+          true,
+          "adding an item should emit a For Sale event"
+        );
+      });
 
       //   it("should allow someone to purchase an item and update state accordingly", async () => {
       //     await instance.addItem(name, price, { from: alice });
