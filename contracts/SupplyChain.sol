@@ -103,7 +103,9 @@ contract SupplyChain {
   function buyItem(uint sku) payable public 
     paidEnough(msg.value) {
       Item storage item = items[sku];
+    
       require(item.state == State.ForSale);
+    
       item.seller.transfer(item.price);
       item.buyer = msg.sender;
       item.state = State.Sold;
@@ -116,7 +118,15 @@ contract SupplyChain {
   //    - the person calling this function is the seller. 
   // 2. Change the state of the item to shipped. 
   // 3. call the event associated with this function!
-  function shipItem(uint sku) public {}
+  function shipItem(uint sku) public {
+    Item storage item = items[sku];
+    
+    require(msg.sender == item.seller);
+    
+    item.state = State.Shipped;
+    
+    emit LogShipped(sku);
+  }
 
   // 1. Add modifiers to check 
   //    - the item is shipped already 
